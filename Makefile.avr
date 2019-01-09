@@ -17,7 +17,6 @@ build: obj elf hex size
 obj: $(PROG).o
 elf: $(PROG).elf
 hex: $(PROG).hex
-	$(OBJCOPY) -j .text -j .data -O ihex $(PROG).elf $(PROG).hex
 
 .SUFFIXES: .c .o .elf .map .hex
 .c.o:
@@ -25,6 +24,9 @@ hex: $(PROG).hex
 	
 .o.elf:
 	$(CC) $(CFLAGS) -Wl,--verbose,-Map,$(<:R).map -o $@ $<
+
+.elf.hex:
+	$(OBJCOPY) -j .text -j .data -O ihex $(<:R).elf $@
 
 size:
 	$(SIZE) $(PROG).elf
