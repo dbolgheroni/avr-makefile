@@ -1,0 +1,48 @@
+LOCALBASE = /usr/local
+
+CC = $(LOCALBASE)/bin/avr-gcc
+OBJDUMP = $(LOCALBASE)/bin/avr-objdump
+OBJCOPY = $(LOCALBASE)/bin/avr-objcopy
+SIZE = $(LOCALBASE)/bin/avr-size
+AVRDUDE = $(LOCALBASE)/bin/avrdude
+CTAGS = $(LOCALBASE)/bin/uctags
+CFLAGS = -Os -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Wattributes
+
+AVR_INCLUDE_PREFIX = /usr/local/avr/include
+
+all: build
+
+build: obj elf hex size
+
+obj: $(PROG).o
+elf: $(PROG).elf
+hex: $(PROG).hex
+	$(OBJCOPY) -j .text -j .data -O ihex $(PROG).elf $(PROG).hex
+
+.SUFFIXES: .c .o .elf .map .hex
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+	
+.o.elf:
+	$(CC) $(CFLAGS) -Wl,--verbose,-Map,$(<:R).map -o $@ $<
+
+size:
+	$(SIZE) $(PROG).elf
+
+upload:
+	$(AVRDUDE) -q -V -p $(MCU) -D -c $(PROGRAMMER) -b $(BAUDRATE) \
+		-P $(PORT) -U flash:w:$(PROG).hex:i
+
+disasm: $(PROG).elf
+	$(OBJDUMP) -h -S -t $(PROG).elf
+
+tags:
+	$(CTAGS) -f tags -R --format=1 --languages=C,C++ \
+		$(LOCALBASE)/avr/include$(CTAGSFLAGS)
+
+arduinotags: tags
+	$(CTAGS) -f tags -R --format=1 --languages=C,C++ -a \
+		$(LOCALBASE)/share/arduino/cores
+
+clean:
+	rm -rf *.o *.elf *.map tags
