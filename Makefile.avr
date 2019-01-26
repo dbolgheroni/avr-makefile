@@ -29,6 +29,7 @@ hex: $(PROG).hex
 .elf.hex:
 	$(OBJCOPY) -j .text -j .data -O ihex $(<:R).elf $@
 
+.PHONY: size upload disasm tags arduinotags clean
 size:
 	$(SIZE) $(PROG).elf
 
