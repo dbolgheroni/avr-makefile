@@ -44,7 +44,8 @@ tags:
 
 arduinotags: tags
 	$(CTAGS) -f tags -R --format=1 --languages=C,C++ -a \
-		$(LOCALBASE)/share/arduino/cores
+		$(LOCALBASE)/share/arduino/cores \
+		$(LOCALBASE)/share/arduino/libraries
 
 clean:
 	rm -rf *.o *.elf *.map tags
