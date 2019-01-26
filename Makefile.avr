@@ -48,4 +48,4 @@ arduinotags: tags
 		$(LOCALBASE)/share/arduino/libraries
 
 clean:
-	rm -rf *.o *.elf *.map tags
+	rm -rf *.o *.elf *.map
