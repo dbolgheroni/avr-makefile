@@ -10,12 +10,13 @@ SIZE = $(LOCALBASE)/bin/avr-size
 
 AVRDUDE = $(LOCALBASE)/bin/avrdude
 
+LIBS = timer spi uart util gpio
 
 all: build
 
 build: obj elf hex size
 
-obj: $(PROG).o
+obj: $(PROG).o $(LIBS:S/$/.o/g)
 elf: $(PROG).elf
 hex: $(PROG).hex
 
@@ -24,7 +25,7 @@ hex: $(PROG).hex
 	$(CC) $(CFLAGS) -c $<
 	
 .o.elf:
-	$(CC) $(CFLAGS) -Wl,--verbose,-Map,$(<:R).map -o $@ $<
+	$(CC) $(CFLAGS) -Wl,-Map,$(<:R).map -o $@ $(LIBS:S/$/.o/g) $<
 
 .elf.hex:
 	$(OBJCOPY) -j .text -j .data -O ihex $(<:R).elf $@
