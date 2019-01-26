@@ -1,14 +1,15 @@
 LOCALBASE = /usr/local
 
 CC = $(LOCALBASE)/bin/avr-gcc
+CTAGS = $(LOCALBASE)/bin/uctags
+CFLAGS = -g -Os -mmcu=$(MCU) -DF_CPU=$(F_CPU)
+
 OBJDUMP = $(LOCALBASE)/bin/avr-objdump
 OBJCOPY = $(LOCALBASE)/bin/avr-objcopy
 SIZE = $(LOCALBASE)/bin/avr-size
-AVRDUDE = $(LOCALBASE)/bin/avrdude
-CTAGS = $(LOCALBASE)/bin/uctags
-CFLAGS = -Os -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Wattributes
 
-AVR_INCLUDE_PREFIX = /usr/local/avr/include
+AVRDUDE = $(LOCALBASE)/bin/avrdude
+
 
 all: build
 
