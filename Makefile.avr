@@ -40,7 +40,7 @@ disasm: $(PROG).elf
 
 tags:
 	$(CTAGS) -f tags -R --format=1 --languages=C,C++ \
-		$(LOCALBASE)/avr/include$(CTAGSFLAGS)
+		$(LOCALBASE)/avr/include
 
 arduinotags: tags
 	$(CTAGS) -f tags -R --format=1 --languages=C,C++ -a \
