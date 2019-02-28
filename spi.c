@@ -58,11 +58,3 @@ uint8_t spi_send(uint8_t data) {
 
         return SPDR;
 }
-
-void enable_ss() {
-        PORTB &= ~(_BV(PORTB2));
-}
-
-void disable_ss() {
-        PORTB |= _BV(PORTB2);
-}

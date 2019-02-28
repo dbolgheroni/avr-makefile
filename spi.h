@@ -22,8 +22,6 @@
  * SOFTWARE.
  */
 
-void enable_ss();
-void disable_ss();
 #include <stdint.h>
 
 void spi_master_init();
