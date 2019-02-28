@@ -44,3 +44,20 @@ void gpio_reset13() {
 void gpio_toggle13() {
         PINB |= _BV(PINB5);
 }
+
+/* arduino port 10 == avr PB2 */
+void gpio_mode10() {
+        DDRB |= _BV(DDB2); /* output */
+}
+
+void gpio_set10() {
+        PORTB |= _BV(PORTB2);
+}
+
+void gpio_reset10() {
+        PORTB &= ~_BV(PORTB2);
+}
+
+void gpio_toggle10() {
+        PINB |= _BV(PINB2);
+}

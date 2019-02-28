@@ -28,3 +28,8 @@ void gpio_mode13();
 void gpio_set13();
 void gpio_reset13();
 void gpio_toggle13();
+
+void gpio_mode10();
+void gpio_set10();
+void gpio_reset10();
+void gpio_toggle10();
