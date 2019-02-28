@@ -24,7 +24,7 @@
 
 #include <avr/io.h>
 
-void set_pin_dir();
-void set_pin();
-void unset_pin();
-void toggle_pin();
+void gpio_mode13();
+void gpio_set13();
+void gpio_reset13();
+void gpio_toggle13();

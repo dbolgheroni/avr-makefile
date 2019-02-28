@@ -27,18 +27,20 @@
 #include "gpio.h"
 
 /* deliberately make these function names non-generic */
-void set_pin13_dir() {
+
+/* arduino port 13 == avr PB5 */
+void gpio_mode13() {
         DDRB |= _BV(DDB5); /* output */
 }
 
-void set_pin13() {
+void gpio_set13() {
         PORTB |= _BV(PORTB5);
 }
 
-void unset_pin13() {
+void gpio_reset13() {
         PORTB &= ~_BV(PORTB5);
 }
 
-void toggle_pin13() {
+void gpio_toggle13() {
         PINB |= _BV(PINB5);
 }
