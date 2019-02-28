@@ -13,3 +13,6 @@ This project attempts to do the same, but compiling "pure"-C AVR code based on a
   - on Arch, should work with *community/bmake*
 - don't try to work on every platform without changes
   - so far, this works great in OpenBSD with `devel/avr-libc` installed (it will install `devel/avr-gcc` as a dependency)
+  
+## See also
+The [arm-makefile](https://github.com/dbolgheroni/arm-makefile) has the same goals but for the 32-bit STM32F1 microcontrollers based on the Cortex-M3 core.
