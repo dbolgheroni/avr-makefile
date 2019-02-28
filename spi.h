@@ -22,7 +22,9 @@
  * SOFTWARE.
  */
 
-void spi_init_master();
-uint8_t spi_tx(uint8_t);
 void enable_ss();
 void disable_ss();
+#include <stdint.h>
+
+void spi_master_init();
+uint8_t spi_send(uint8_t);

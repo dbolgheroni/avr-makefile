@@ -28,7 +28,7 @@
 
 #include "gpio.h"
 
-void spi_init_master() {
+void spi_master_init() {
         /* disable interrupts */
         cli();
 
@@ -51,7 +51,7 @@ ISR (SPI_STC_vect) {
 
 }
 
-uint8_t spi_tx(uint8_t data) {
+uint8_t spi_send(uint8_t data) {
         SPDR = data;
         asm volatile("nop");
         while (!(SPSR & _BV(SPIF))) ; // wait
