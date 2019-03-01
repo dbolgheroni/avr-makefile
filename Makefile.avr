@@ -10,7 +10,7 @@ SIZE = $(LOCALBASE)/bin/avr-size
 
 AVRDUDE = $(LOCALBASE)/bin/avrdude
 
-LIBS = timer spi uart util gpio
+LIBS = timer spi uart util gpio mcp2515
 
 all: build
 
